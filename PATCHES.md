@@ -43,8 +43,10 @@ and `cli_timeout` default in `ValidatorRuntime._read_config` /
 on the eval timeout — even though `MINE_GATEWAY_PROVIDER=openai_compatible`
 is set.
 
-**Fix:** Force `MINE_LLM_MODE=gateway` in launchers so the gateway path is
-always picked regardless of CLI availability.
+**Fix:** Force `MINE_LLM_MODE=api` in launchers so the API path is always
+picked regardless of CLI availability. (Note: `gateway` mode requires
+`provider=openclaw` in the model config — for OpenRouter or any other
+OpenAI-compatible backend, use `api`.)
 
 ---
 

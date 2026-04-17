@@ -42,7 +42,7 @@ export VALIDATOR_OUTPUT_ROOT="$REPO_ROOT/output/$VALIDATOR_ID"
 export VALIDATOR_ID="$VALIDATOR_ID"
 # Force gateway path — without this the worker auto-detects openclaw CLI and
 # wedges on 120s/240s timeouts instead of using OpenRouter (PATCHES.md #3).
-export MINE_LLM_MODE="gateway"
+export MINE_LLM_MODE="api"
 export MINE_GATEWAY_PROVIDER="openai_compatible"
 export MINE_GATEWAY_TOKEN="$OPENROUTER_TOKEN"
 export MINE_GATEWAY_BASE_URL="https://openrouter.ai/api/v1"
