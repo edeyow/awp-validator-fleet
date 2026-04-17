@@ -220,7 +220,7 @@ class ValidatorRuntime:
     def _read_config(self) -> dict[str, Any]:
         """Read hot-reloadable config. Edit the file to change behavior without restart."""
         defaults: dict[str, Any] = {
-            "cli_timeout": 120,
+            "cli_timeout": 240,
             "notify_enabled": False,
             "notify_interval": 300,
         }
@@ -240,7 +240,7 @@ class ValidatorRuntime:
             return
         try:
             self._config_file.write_text(json.dumps({
-                "cli_timeout": 120,
+                "cli_timeout": 240,
                 "notify_enabled": False,
                 "notify_interval": 300,
             }, indent=2), encoding="utf-8")

@@ -92,7 +92,7 @@ async def enrich_with_llm(
     *,
     model_config: dict[str, Any] | None = None,
     system_prompt: str = "",
-    timeout: float = 120.0,
+    timeout: float = 240.0,
 ) -> EnrichResult:
     """Execute a single enrich prompt with the preferred routing."""
     config = dict(model_config or {})
@@ -123,7 +123,7 @@ async def _enrich_via_openclaw_cli(
     prompt: str,
     *,
     system_prompt: str = "",
-    timeout: float = 120.0,
+    timeout: float = 240.0,
 ) -> EnrichResult:
     from crawler.enrich.generative.openclaw_agent import EnrichResponse, call_agent
 
@@ -148,7 +148,7 @@ async def _enrich_via_model_config(
     *,
     model_config: dict[str, Any],
     system_prompt: str = "",
-    timeout: float = 120.0,
+    timeout: float = 240.0,
 ) -> EnrichResult:
     from crawler.enrich.generative.llm_client import (
         LLMClient,
