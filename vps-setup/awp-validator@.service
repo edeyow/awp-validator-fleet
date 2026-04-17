@@ -1,0 +1,29 @@
+[Unit]
+Description=AWP Validator Worker (%i)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+User=%u
+WorkingDirectory=/opt/awp-validator-fleet
+# EnvironmentFile contains: VALIDATOR_PRIVATE_KEY, OPENROUTER_TOKEN
+# One file per validator: /etc/awp-validator/validator-<N>.env
+EnvironmentFile=/etc/awp-validator/%i.env
+Environment=VALIDATOR_ID=%i
+Environment=VALIDATOR_OUTPUT_ROOT=/opt/awp-validator-fleet/output/%i
+Environment=MINE_GATEWAY_PROVIDER=openai_compatible
+Environment=MINE_GATEWAY_BASE_URL=https://openrouter.ai/api/v1
+Environment=MINE_ENRICH_MODEL=google/gemini-2.0-flash-001
+Environment=MINE_GATEWAY_MODEL=google/gemini-2.0-flash-001
+Environment=MINE_GATEWAY_TOKEN=${OPENROUTER_TOKEN}
+Environment=PYTHONIOENCODING=utf-8
+Environment=MINE_AUTO_UPDATE=0
+ExecStart=/opt/awp-validator-fleet/.venv/bin/python scripts/run_tool.py validator-start
+Restart=on-failure
+RestartSec=30
+StandardOutput=append:/var/log/awp-validator/%i.log
+StandardError=append:/var/log/awp-validator/%i.log
+
+[Install]
+WantedBy=multi-user.target
